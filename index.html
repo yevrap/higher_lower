@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function higher() {
+    var score = document.getElementById("score");
+    var card1 = document.getElementById("card1");
+    
+    var card2 = getRandomInt(10);
+    
+    if (parseInt(card1.innerHTML, 10) < card2) {
+        score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+        card1.innerHTML = card2;
+    }
+    
+    console.log("card2: " + card2)
+}
+
+function lower() {
+    var score = document.getElementById("score");
+    var card1 = document.getElementById("card1");
+    
+    var card2 = getRandomInt(10);
+    
+    if (parseInt(card1.innerHTML, 10) > card2) {
+        score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+        card1.innerHTML = card2;
+    }
+    
+    console.log("card2: " + card2)
+}
+
+function equal() {
+    var score = document.getElementById("score");
+    var card1 = document.getElementById("card1");
+    
+    var card2 = getRandomInt(10);
+    
+    if (parseInt(card1.innerHTML, 10) > card2) {
+        score.innerHTML = parseInt(score.innerHTML, 10) + 100;
+        card1.innerHTML = card2;
+    }
+    
+    console.log("card2: " + card2)
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+</script>
+</head>
+<body>
+<h1>Higher or Lower?</h1>
+<p id="card1">1</p>
+<button type="button" onclick="higher()"> Higher </button>
+<button type="button" onclick="lower()"> Lower </button>
+<button type="button" onclick="equal()"> Equal </button>
+<h2> Score: <span id="score"> 0 </span> </h2>
+</body>
+</html>
