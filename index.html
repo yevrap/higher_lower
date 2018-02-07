@@ -11,10 +11,10 @@ function higher() {
     
     if (parseInt(card1.innerHTML, 10) < card2) {
         score.innerHTML = parseInt(score.innerHTML, 10) + 1;
-        card1.innerHTML = card2;
     }
+    card1.innerHTML = card2;
     
-    console.log("card2: " + card2)
+    console.log("card2: " + card2);
 }
 
 function lower() {
@@ -25,10 +25,10 @@ function lower() {
     
     if (parseInt(card1.innerHTML, 10) > card2) {
         score.innerHTML = parseInt(score.innerHTML, 10) + 1;
-        card1.innerHTML = card2;
     }
+    card1.innerHTML = card2;
     
-    console.log("card2: " + card2)
+    console.log("card2: " + card2);
 }
 
 function equal() {
@@ -37,12 +37,12 @@ function equal() {
     
     var card2 = getRandomInt(10);
     
-    if (parseInt(card1.innerHTML, 10) > card2) {
+    if (parseInt(card1.innerHTML, 10) === card2) {
         score.innerHTML = parseInt(score.innerHTML, 10) + 100;
-        card1.innerHTML = card2;
     }
+    card1.innerHTML = card2;
     
-    console.log("card2: " + card2)
+    console.log("card2: " + card2);
 }
 
 function getRandomInt(max) {
