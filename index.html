@@ -4,7 +4,6 @@
 <script>
 
 function guess(buttonId) {
-    var score = document.getElementById("score");
     var card1 = document.getElementById("card1");
     
     var card2 = getRandomInt(10);
@@ -12,21 +11,26 @@ function guess(buttonId) {
     switch(buttonId) {
         case "higher":
             if (parseInt(card1.innerHTML, 10) < card2) {
-            score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+                score();
             break;
             }
         case "lower":
             if (parseInt(card1.innerHTML, 10) > card2) {
-            score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+                score();
             break;
             }
         case "equal":
             if (parseInt(card1.innerHTML, 10) === card2) {
-            score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+                score();
             break;
             }
     }
     card1.innerHTML = card2;
+}
+
+function score() {
+    var score = document.getElementById("score");
+    score.innerHTML = parseInt(score.innerHTML, 10) + 1;
 }
 
 function getRandomInt(max) {
@@ -34,6 +38,7 @@ function getRandomInt(max) {
 }
 
 </script>
+
 </head>
 <body>
 <h1>Higher or Lower?</h1>
