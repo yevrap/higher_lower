@@ -25,7 +25,24 @@ function guess(buttonId) {
             break;
             }
     }
-    card1.innerHTML = card2;
+    var divContent = document.getElementById("guesses");
+    var countElements = divContent.childElementCount;
+
+    if(countElements < 5) {
+        var newP = document.createElement("p");
+        var pContent = document.createTextNode("X");
+        newP.appendChild(pContent);
+
+        divContent.appendChild(newP);
+
+        card1.innerHTML = card2;
+    } else {
+        var loseH = document.createElement("h3");
+        var hContent = document.createTextNode("GAME OVER");
+        loseH.appendChild(hContent);
+
+        divContent.appendChild(loseH);
+    }
 }
 
 function score() {
@@ -42,7 +59,9 @@ function getRandomInt(max) {
 </head>
 <body>
 <h1>Higher or Lower?</h1>
+<div id="guesses">
 <p id="card1">1</p>
+</div>
 <button type="button" id="higher" onclick="guess(this.id)"> Higher </button>
 <button type="button" id="lower" onclick="guess(this.id)"> Lower </button>
 <button type="button" id="equal" onclick="guess(this.id)"> Equal </button>
