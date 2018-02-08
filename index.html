@@ -3,46 +3,30 @@
 <head>
 <script>
 
-function higher() {
+function guess(buttonId) {
     var score = document.getElementById("score");
     var card1 = document.getElementById("card1");
     
     var card2 = getRandomInt(10);
-    
-    if (parseInt(card1.innerHTML, 10) < card2) {
-        score.innerHTML = parseInt(score.innerHTML, 10) + 1;
-    }
-    card1.innerHTML = card2;
-    
-    console.log("card2: " + card2);
-}
 
-function lower() {
-    var score = document.getElementById("score");
-    var card1 = document.getElementById("card1");
-    
-    var card2 = getRandomInt(10);
-    
-    if (parseInt(card1.innerHTML, 10) > card2) {
-        score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+    switch(buttonId) {
+        case "higher":
+            if (parseInt(card1.innerHTML, 10) < card2) {
+            score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+            break;
+            }
+        case "lower":
+            if (parseInt(card1.innerHTML, 10) > card2) {
+            score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+            break;
+            }
+        case "equal":
+            if (parseInt(card1.innerHTML, 10) === card2) {
+            score.innerHTML = parseInt(score.innerHTML, 10) + 1;
+            break;
+            }
     }
     card1.innerHTML = card2;
-    
-    console.log("card2: " + card2);
-}
-
-function equal() {
-    var score = document.getElementById("score");
-    var card1 = document.getElementById("card1");
-    
-    var card2 = getRandomInt(10);
-    
-    if (parseInt(card1.innerHTML, 10) === card2) {
-        score.innerHTML = parseInt(score.innerHTML, 10) + 100;
-    }
-    card1.innerHTML = card2;
-    
-    console.log("card2: " + card2);
 }
 
 function getRandomInt(max) {
@@ -54,9 +38,9 @@ function getRandomInt(max) {
 <body>
 <h1>Higher or Lower?</h1>
 <p id="card1">1</p>
-<button type="button" onclick="higher()"> Higher </button>
-<button type="button" onclick="lower()"> Lower </button>
-<button type="button" onclick="equal()"> Equal </button>
+<button type="button" id="higher" onclick="guess(this.id)"> Higher </button>
+<button type="button" id="lower" onclick="guess(this.id)"> Lower </button>
+<button type="button" id="equal" onclick="guess(this.id)"> Equal </button>
 <h2> Score: <span id="score"> 0 </span> </h2>
 </body>
 </html>
