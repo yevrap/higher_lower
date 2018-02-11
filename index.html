@@ -4,9 +4,8 @@
 <script>
 
 var CardDeck = {
-    deck: getCardList(5),
+    deck: getCardList(53),
     nextCard: function() {return this.deck.pop();}
-
 };
 
 function guess(buttonId) {
@@ -21,13 +20,12 @@ function guess(buttonId) {
         } else if(buttonId==="lower") {
             if (parseInt(card1.innerHTML, 10) > card2) {
                 score();
-                console.log(parseInt(card1.innerHTML, 10));
-                console.log(card2);
-                console.log(buttonId);
             }
-        } else console.log("should not be here!!!");
+        }
     }
-        card1.innerHTML = card2;
+
+    card1.innerHTML = card2;
+
     if(CardDeck.deck.length===0) end()
 }
 
@@ -66,7 +64,6 @@ function score() {
 
 function getCardList(size) {
     var randomCardList = shuffle([...Array(size).keys()]);
-
     return randomCardList;
 }
 
@@ -93,8 +90,8 @@ function shuffle(array) {
 
 </head>
 <body>
-<h1>Higher or Lower?</h1>
-<p id="card1"></p>
+<h1>Higher or Lower? (0-52)</h1>
+<h2 id="card1"></h2>
 <input type="button" id="start" onclick="start()" value="Start"></input>
 <input hidden type="button" id="higher" onclick="guess(this.id)" value="Higher"></input>
 <input hidden type="button" id="lower" onclick="guess(this.id)" value="Lower"></input>
