@@ -10,28 +10,25 @@ var CardDeck = {
 };
 
 function guess(buttonId) {
-    
-
     if(CardDeck.deck.length>0) {
         var card1 = document.getElementById("card1");
         var card2 = CardDeck.nextCard();
         
-        switch(buttonId) {
-            case "higher":
-                if (parseInt(card1.innerHTML, 10) < card2) {
-                    score();
-                break;
-                }
-            case "lower":
-                if (parseInt(card1.innerHTML, 10) > card2) {
-                    score();
-                break;
-                }
-        }
-        card1.innerHTML = card2;
+        if(buttonId==="higher") {
+            if (parseInt(card1.innerHTML, 10) < card2) {
+                score();
+            }
+        } else if(buttonId==="lower") {
+            if (parseInt(card1.innerHTML, 10) > card2) {
+                score();
+                console.log(parseInt(card1.innerHTML, 10));
+                console.log(card2);
+                console.log(buttonId);
+            }
+        } else console.log("should not be here!!!");
     }
+        card1.innerHTML = card2;
     if(CardDeck.deck.length===0) end()
-
 }
 
 function start() {
@@ -97,13 +94,11 @@ function shuffle(array) {
 </head>
 <body>
 <h1>Higher or Lower?</h1>
-<div id="guesses">
 <p id="card1"></p>
-</div>
-<button type="button" id="start" onclick="start()"> Start </button>
-<button hidden type="button" id="higher" onclick="guess(this.id)"> Higher </button>
-<button hidden type="button" id="lower" onclick="guess(this.id)"> Lower </button>
-<button hidden type="button" id="restart" onclick="restart()"> Restart </button>
+<input type="button" id="start" onclick="start()" value="Start"></input>
+<input hidden type="button" id="higher" onclick="guess(this.id)" value="Higher"></input>
+<input hidden type="button" id="lower" onclick="guess(this.id)" value="Lower"></input>
+<input hidden type="button" id="restart" onclick="restart()" value="Restart"></input>
 <h2> Score: <span id="score"> 0 </span> </h2>
 </body>
 </html>
