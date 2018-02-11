@@ -12,45 +12,26 @@ var CardDeck = {
 function guess(buttonId) {
     
 
-    var card1 = document.getElementById("card1");
-    
-    var card2 = getRandomInt(10);
-
-    switch(buttonId) {
-        case "higher":
-            if (parseInt(card1.innerHTML, 10) < card2) {
-                score();
-            break;
-            }
-        case "lower":
-            if (parseInt(card1.innerHTML, 10) > card2) {
-                score();
-            break;
-            }
-        case "equal":
-            if (parseInt(card1.innerHTML, 10) === card2) {
-                score();
-            break;
-            }
-    }
-    var divContent = document.getElementById("guesses");
-    var countElements = divContent.childElementCount;
-
-    if(countElements < 5) {
-        var newP = document.createElement("p");
-        var pContent = document.createTextNode("X");
-        newP.appendChild(pContent);
-
-        divContent.appendChild(newP);
-
+    if(CardDeck.deck.length>0) {
+        var card1 = document.getElementById("card1");
+        var card2 = CardDeck.nextCard();
+        
+        switch(buttonId) {
+            case "higher":
+                if (parseInt(card1.innerHTML, 10) < card2) {
+                    score();
+                break;
+                }
+            case "lower":
+                if (parseInt(card1.innerHTML, 10) > card2) {
+                    score();
+                break;
+                }
+        }
         card1.innerHTML = card2;
-    } else {
-        var loseH = document.createElement("h3");
-        var hContent = document.createTextNode("GAME OVER");
-        loseH.appendChild(hContent);
-
-        divContent.appendChild(loseH);
     }
+    if(CardDeck.deck.length===0) end()
+
 }
 
 function start() {
@@ -59,14 +40,26 @@ function start() {
 
     var lowerButton = document.getElementById("lower");
     var higherButton = document.getElementById("higher");
-    var equalButton = document.getElementById("equal");
+    var restartButton = document.getElementById("restart");
 
     lowerButton.style.display = "initial"
     higherButton.style.display = "initial"
-    equalButton.style.display = "initial"
+    restartButton.style.display = "initial"
 
     var card1 = document.getElementById("card1");
     card1.innerHTML = CardDeck.nextCard();
+}
+
+function end() {
+    var lowerButton = document.getElementById("lower");
+    var higherButton = document.getElementById("higher");
+
+    lowerButton.style.display = "none"
+    higherButton.style.display = "none"
+}
+
+function restart() {
+    window.location.reload()
 }
 
 function score() {
@@ -110,7 +103,7 @@ function shuffle(array) {
 <button type="button" id="start" onclick="start()"> Start </button>
 <button hidden type="button" id="higher" onclick="guess(this.id)"> Higher </button>
 <button hidden type="button" id="lower" onclick="guess(this.id)"> Lower </button>
-<button hidden type="button" id="equal" onclick="guess(this.id)"> Equal </button>
+<button hidden type="button" id="restart" onclick="restart()"> Restart </button>
 <h2> Score: <span id="score"> 0 </span> </h2>
 </body>
 </html>
